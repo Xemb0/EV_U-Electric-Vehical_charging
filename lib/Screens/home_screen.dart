@@ -21,7 +21,8 @@ class _HomeScreenState extends State<HomeScreen> {
   String _batteryMaxCapacity = '100 kWh';
   String _batteryTemperature = '30°C';
   String _evModel = 'Tesla Model S';
-  String _evID = 'ABC123'; String _batteryPercentage = "98";
+  String _evID = 'ABC123';
+  String _batteryPercentage = "98";
 
   @override
   Widget build(BuildContext context) {
@@ -141,6 +142,20 @@ class _HomeScreenState extends State<HomeScreen> {
                     ],
                   ),
                   SizedBox(height: 32),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Battery Temperature:',
+                        style: TextStyle(fontSize: 24),
+                      ),
+                      SizedBox(width: 16),
+                      Text(
+                        '$_batteryTemperature',
+                        style: TextStyle(fontSize: 24),
+                      ),
+                    ],
+                  ),
                 ],
 
               ),
@@ -151,22 +166,40 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       bottomNavigationBar: BottomAppBar(
         color: Colors.blue,
-        child: Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
+        child:Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
             GestureDetector(
-            onTap: () {
-        // Navigate to user's profile screen
-      },
-        child: CircleAvatar(
-          backgroundImage: NetworkImage(
-            'https://www.w3schools.com/howto/img_avatar.png'),
+              onTap: () {
+                // Navigate to user's profile screen
+              },
+              child: CircleAvatar(
+                backgroundImage: NetworkImage('https://www.w3schools.com/howto/img_avatar.png'),
                 radius: 20,
               ),
             ),
-            SizedBox(width: 16),
+            Row(
+              children: [
+                Text(
+                  'Bluetooth: Connected',
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
+                ),
+                SizedBox(width: 8),
+                ElevatedButton(
+                  onPressed: () {
+                    // Handle button press
+                  },
+                  child: Text('Disconnect'),
+                ),
+              ],
+            ),
           ],
-        ),
+        )
+
       ),
     );
   }
